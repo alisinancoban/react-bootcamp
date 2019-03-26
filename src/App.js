@@ -10,7 +10,8 @@ class App extends Component {
       {name: "Alper", age: 22},
       {name: "Mustafa", age: 55}
     ],
-    otherState: "some other value"
+    otherState: "some other value",
+    showPersons: false
   }
 
   switchNameHandler = (newName) => {
@@ -34,6 +35,13 @@ class App extends Component {
     })
   }
 
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({
+      showPersons: !doesShow
+    });
+  }
+
   render() {
     //inline style
     const style = {
@@ -47,8 +55,10 @@ class App extends Component {
       <div className="App">
         <h1>Hi I m a React App</h1>
         <p>This is really working</p>
-        <button style={style} onClick={this.switchNameHandler.bind(this, "Sinan")}>Performance Switch Name</button>
-        <button style={style} onClick = {() => this.switchNameHandler("Sinan!")}>Inefficient Switch Name</button>
+        <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
+
+      { this.state.showPersons === true ?
+        <div>
         <Person 
           name = {this.state.persons[0].name} 
           age = {this.state.persons[0].age}/>
@@ -61,6 +71,8 @@ class App extends Component {
         <Person 
           name = {this.state.persons[2].name} 
           age = {this.state.persons[2].age}/>
+        </div> : null
+      }
       </div>
     );
     //this compile to this code
