@@ -1,20 +1,30 @@
-import React from 'react';
+import React, {Component} from 'react';
 import styles from './Person.css';
 
-//function type component
-const person = (props) => {
-    const random = Math.random();
-        if(random > 0.99){
+class Person extends Component{
+    render(){
+        console.log("Person.js render");
+        const random = Math.random();
+        if(random > 0.95){
             throw new Error("Something went wrong");
         }
-    console.log("Person.js render");
-    return (
-        <div className={styles.Person}>
-            <p onClick = {props.click}>I am {props.name} and {props.age} years old</p>
-            <p>{props.children}</p>
-            <input type="text" onChange={props.changed} value={props.name}/>
-        </div>
-    )
+
+        return (
+            <div className={styles.Person}>
+                <p onClick={this.props.click}>
+                    I am {this.props.name} and {this.props.age} years old
+                </p>
+                <p>{this.props.children}</p>
+                <input 
+                    type="text" 
+                    onChange={this.props.changed} 
+                    value={this.props.name}
+                />
+            </div>
+        );
+    }
+
+    
 }
 
-export default person;
+export default Person;
