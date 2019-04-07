@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import styles from './App.css';
 import Persons from '../components/Persons/Persons';
-import Cockpit from '../components/Cockpit/Cockpit'
+import Cockpit from '../components/Cockpit/Cockpit';
 
-//functional type component
 class App extends Component {
+  constructor(props){
+    super(props);
+    console.log("App.js ctor");
+  }
+
   state = {
     persons: [
       {id: "2a8dce0a66a045ac95238ea0a21b9bdb", name: "Sinan", age: 24},
@@ -13,6 +17,15 @@ class App extends Component {
     ],
     otherState: "some other value",
     showPersons: false
+  }
+
+  static getDerivedStateFromProps(props, state){
+    console.log("App.js getDerivedStateFromProps", props);
+    return state;
+  }
+
+  componentDidMount(){
+    console.log("App.js componentDidMount");
   }
 
   nameChangedHandler = (event, id) => {
@@ -28,13 +41,6 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
     this.setState({persons: persons});
-    /*this.setState({
-      persons: [
-        {name: "Sinan", age: 23},
-        {name: event.target.value, age: 21},
-        {name: "Mustafa", age: 40}
-     ]
-    })*/
   }
 
   deletePersonHandler = (personIndex) => {
@@ -52,19 +58,20 @@ class App extends Component {
   }
 
   render() {
+    console.log("App.js render");
     let persons = null;
 
     if(this.state.showPersons){
-      persons =<Persons
+      persons = <Persons
             persons={this.state.persons}
             clicked={this.deletePersonHandler}
-            changed={this.nameChangedHandler}
-            />;
+            changed={this.nameChangedHandler}/>
     }
 
     return (
       <div className={styles.App}>
         <Cockpit 
+          title={this.props.appTitle}
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           clicked={this.togglePersonsHandler}
