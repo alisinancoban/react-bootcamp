@@ -1,30 +1,25 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import Auxiliary from '../../../Auxiliary/Auxiliary';
 import styles from './Person.css';
 
-class Person extends Component{
-    render(){
-        console.log("Person.js render");
-        const random = Math.random();
-        if(random > 0.95){
-            throw new Error("Something went wrong");
-        }
-
-        return (
-            <div className={styles.Person}>
-                <p onClick={this.props.click}>
-                    I am {this.props.name} and {this.props.age} years old
-                </p>
-                <p>{this.props.children}</p>
-                <input 
-                    type="text" 
-                    onChange={this.props.changed} 
-                    value={this.props.name}
-                />
-            </div>
-        );
+class Person extends Component {
+    render() {
+      console.log('[Person.js] rendering...');
+      return (
+        <Auxiliary>
+          <p onClick={this.props.click}>
+            I'm {this.props.name} and I am {this.props.age} years old!
+          </p>
+          <p key="i2">{this.props.children}</p>
+          <input
+            key="i3"
+            type="text"
+            onChange={this.props.changed}
+            value={this.props.name}
+          />
+        </Auxiliary>
+      );
     }
-
-    
-}
-
-export default Person;
+  }
+  
+  export default Person;
