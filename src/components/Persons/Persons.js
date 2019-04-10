@@ -3,32 +3,6 @@ import Person from './Person/Person';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 class Persons extends PureComponent{
-  /*shouldComponentUpdate(nextProps, nextState){
-    console.log("Persons.js shouldComponentUpdate");
-    if(nextProps.persons !== this.props.persons ||
-       nextProps.changed !== this.props.changed ||
-       nextProps.clicked !== this.props.clicked)
-    {
-      return true;
-    } else{
-      return false;
-    }
-  }*/
-
-  getSnapshotBeforeUpdate(prevProps, prevState){
-    console.log("Persons.js getSnapshotBeforeUpdate");
-    return {message: "snapshot"};
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot){
-    console.log("Persons.js componentDidUpdate");
-    console.log(snapshot);
-  }
-
-  componentWillUnmount(){
-    console.log("Persons.js componentWillUnmount");
-  }
-
   render(){
     console.log("Persons.js render");
 
